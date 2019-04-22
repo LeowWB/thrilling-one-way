@@ -25,6 +25,7 @@ def looksValidId? str
 	return regex.match str
 end
 
+# anime title -> anime id
 def getIdFromRoughName name
 	query = Jikan::Query.new
 	results = query.search name, :anime
@@ -45,12 +46,17 @@ def getSeiyuuList url
 	returnVal = []
 	
 	elems.each do |link|
-		returnVal.push link["href"] if link["href"] and link["href"].include? "/people/"
+		returnVal.push (getSeiyuuNameFromUrl link["href"]) if link["href"] and link["href"].include? "/people/"
 	end
 
 	returnVal.uniq!
 
 	return returnVal
+end
+
+def getSeiyuuNameFromUrl url
+	splitArr = url.split '/'
+	return splitArr[-1].tr '_', ' '
 end
 
 main
