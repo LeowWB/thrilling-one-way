@@ -10,10 +10,17 @@ def main
 	anime_id = gets.chomp
 	puts "Please wait..."
 	
-	seiyuu_list = getSeiyuuList ensureId anime_id
-	puts seiyuu_list
+	seiyuu_list = getSeiyuuList ensureId anime_id	
+	completed_list = getCompletedList
 
-	#completed_list = getCompletedList
+	completed_list.each do |c|
+		c_seiyuus = getSeiyuuList ensureId c
+		seiyuu_list.each do |s|
+			c_seiyuus.each do |cs|
+				puts cs if cs==s
+			end
+		end
+	end
 end
 
 def ensureId nameOrId
@@ -47,7 +54,7 @@ def getSeiyuuList id
 end
 
 def getCompletedList
-	return ["love live", "mirai nikki", "tokyo ghoul", "madoka magica", "re", "kuroko no basket"]
+	return ["danmachi"]
 end
 
 main
