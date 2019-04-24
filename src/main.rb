@@ -10,16 +10,20 @@ def main
 	anime_id = gets.chomp
 	puts "Please wait..."
 	
-	if not /^[0-9]{1,}$/.match anime_id then
-		query = Jikan::Query.new
-		results = query.search anime_id, :anime
-		anime_id = results.id[0]
-	end
-	
-	seiyuu_list = getSeiyuuList anime_id
+	seiyuu_list = getSeiyuuList ensureId anime_id
 	puts seiyuu_list
 
 	#completed_list = getCompletedList
+end
+
+def ensureId nameOrId
+	if /^[0-9]{1,}$/.match nameOrId then
+		return nameOrId
+	else
+		query = Jikan::Query.new
+		results = query.search nameOrId, :anime
+		return results.id[0]
+	end
 end
 
 def getSeiyuuList id
