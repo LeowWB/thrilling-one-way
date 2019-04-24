@@ -3,6 +3,8 @@ require 'nokogiri'
 
 load 'spider.rb'
 
+WHICH_CHILD = 4
+
 def main
 	anime_id = promptAnime
 	anime_title = getTitleFromId anime_id
@@ -45,8 +47,8 @@ def getSeiyuuList url
 	elems = doc.css "tr td a"
 	returnVal = []
 	
-	elems.each do |link|
-		returnVal.push (getSeiyuuNameFromUrl link["href"]) if link["href"] and link["href"].include? "/people/"
+	elems.each do |link, x|
+		returnVal.push link.parent.children[1].content if link["href"] and link["href"].include? "/people/" and link.parent.children[WHICH_CHILD] and link.parent.children[WHICH_CHILD].content == "Japanese"
 	end
 
 	returnVal.uniq!
@@ -54,8 +56,10 @@ def getSeiyuuList url
 	return returnVal
 end
 
+#may not need
 def getSeiyuuNameFromUrl url
 	splitArr = url.split '/'
+	# swap first name, last name
 	return splitArr[-1].tr '_', ' '
 end
 
