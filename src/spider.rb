@@ -10,7 +10,7 @@ module Spider
     def spide url
       rv = ""
 
-      open(url) do |f|
+      URI.open(url) do |f|
         f.each_line do |line|
           rv << line
         end

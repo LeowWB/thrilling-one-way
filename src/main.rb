@@ -42,7 +42,7 @@ def get_seiyuu_list id
   anime_title.tr! " ", "_"
   url = "https://myanimelist.net/anime/" + id.to_s + "/" + CGI.escape(anime_title) + "/characters"
 
-  doc = Nokogiri::HTML open url
+  doc = Nokogiri::HTML URI.open url
 
   elems = doc.css "tr td a"
   return_val = []
