@@ -13,6 +13,9 @@ Style/MethodDefParentheses:
 Style/AndOr:
   Enabled: false
 
+Style/Not:
+  Enabled: false
+
 Layout/MultilineOperationIndentation:
   EnforcedStyle: indented
 
