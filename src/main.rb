@@ -17,14 +17,20 @@ def main
   seiyuu_list = get_seiyuu_list ensure_id anime_id
   completed_list = read_completed_list
 
-  completed_list.each do |c|
+  overlap_list = []
+
+  completed_list.each_with_index do |c, i|
+    puts "Processing #{i + 1} of #{completed_list.length}"
+
     c_seiyuus = get_seiyuu_list ensure_id c
     seiyuu_list.each do |s|
       c_seiyuus.each do |cs|
-        puts cs if cs == s
+        overlap_list << cs if cs == s
       end
     end
   end
+
+  puts overlap_list.uniq
 end
 
 def ensure_id name_or_id
@@ -56,7 +62,7 @@ def get_seiyuu_list id
 end
 
 def read_completed_list
-  ["danmachi"]
+  ["danmachi", "tokyo ghoul"]
 end
 
 main
