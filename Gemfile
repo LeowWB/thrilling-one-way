@@ -1,5 +1,6 @@
-source 'https://rubygems.org'
-gem 'byebug'
-gem 'jikan'
-gem 'nokogiri'
-gem 'rubocop'
+source "https://rubygems.org"
+gem "byebug"
+gem "jikan.rb"
+gem "nokogiri"
+gem "rubocop"
+gem "solargraph"

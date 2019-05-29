@@ -1,25 +1,22 @@
+# frozen_string_literal: true
+
 # logic for the crawling functionality
 
-require 'open-uri'
+require "open-uri"
 
 module Spider
-	
-	class Spider
+  # used for spiding urls
+  class Spider
+    def spide url
+      rv = ""
 
-		def initialize
-		end
+      open(url) do |f|
+        f.each_line do |line|
+          rv << line
+        end
+      end
 
-		def spide url
-
-			rv = ""
-
-			open(url) do |f|
-				f.each_line do |line|
-					rv << line
-				end
-			end
-
-			return rv
-		end
-	end
+      rv
+    end
+  end
 end
