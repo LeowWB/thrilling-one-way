@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "byebug"
+require "CGI"
 require "jikan.rb"
 require "nokogiri"
 
@@ -39,17 +40,16 @@ end
 def get_seiyuu_list id
   anime_title = (Jikan.anime id).title
   anime_title.tr! " ", "_"
-  url = URI.encode("https://myanimelist.net/anime/" + id.to_s + "/" + anime_title + "/characters")
+  url = "https://myanimelist.net/anime/" + id.to_s + "/" + CGI.escape(anime_title) + "/characters"
 
   doc = Nokogiri::HTML open url
 
   elems = doc.css "tr td a"
   return_val = []
 
-  elems.each do |link, x|
-    return_val.push link.parent.children[1].content.tr ",","" if
-      link["href"]&.include? "/people/" and
-      link.parent.children[WHICH_CHILD]&.content == "Japanese"
+  elems.each do |link|
+    return_val.push link.parent.children[1].content.tr ",", "" if
+      link["href"]&.include? "/people/" and link.parent.children[WHICH_CHILD]&.content == "Japanese"
   end
 
   return_val.uniq
