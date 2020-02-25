@@ -24,7 +24,9 @@ GEM
       require_all (~> 2.0.0)
     kramdown (1.17.0)
     mini_portile2 (2.4.0)
-    nokogiri (1.10.3-x64-mingw32)
+    nokogiri (1.10.8)
+      mini_portile2 (~> 2.4.0)
+    nokogiri (1.10.8-x64-mingw32)
       mini_portile2 (~> 2.4.0)
     parallel (1.17.0)
     parser (2.6.3.0)
@@ -63,6 +65,7 @@ GEM
     yard (0.9.19)
 
 PLATFORMS
+  ruby
   x64-mingw32
 
 DEPENDENCIES
