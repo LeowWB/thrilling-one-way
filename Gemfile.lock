@@ -1,8 +1,8 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    addressable (2.6.0)
-      public_suffix (>= 2.0.2, < 4.0)
+    addressable (2.8.1)
+      public_suffix (>= 2.0.2, < 6.0)
     ast (2.4.0)
     backport (1.1.1)
     byebug (11.0.1)
@@ -24,12 +24,14 @@ GEM
       require_all (~> 2.0.0)
     kramdown (1.17.0)
     mini_portile2 (2.4.0)
+    nokogiri (1.10.3)
+      mini_portile2 (~> 2.4.0)
     nokogiri (1.10.3-x64-mingw32)
       mini_portile2 (~> 2.4.0)
     parallel (1.17.0)
     parser (2.6.3.0)
       ast (~> 2.4.0)
-    public_suffix (3.1.0)
+    public_suffix (4.0.7)
     rainbow (3.0.0)
     require_all (2.0.0)
     reverse_markdown (1.1.0)
@@ -64,6 +66,7 @@ GEM
 
 PLATFORMS
   x64-mingw32
+  x86_64-linux
 
 DEPENDENCIES
   byebug
